@@ -6,7 +6,7 @@ public abstract class  AbstractBattleship implements Battleship {
 
     protected int fieldHeight;
     protected int shipsQuantity;
-    protected int [] [] shipCoordinates = new int[shipsQuantity][2];
+
 
 
 
@@ -14,10 +14,10 @@ public abstract class  AbstractBattleship implements Battleship {
 
     }
 
-    public AbstractBattleship(int fieldHeight, int shipsQuantity, int[][] shipCoordinates) {
+    public AbstractBattleship(int fieldHeight, int shipsQuantity ) {
         this.fieldHeight = fieldHeight;
         this.shipsQuantity = shipsQuantity;
-        this.shipCoordinates = shipCoordinates;
+        
     }
 
 

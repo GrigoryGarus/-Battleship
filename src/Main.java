@@ -8,7 +8,7 @@ public class Main {
 
 
         Game game = new Game(fieldHeight,shipsQuantity, shipCoordinates);
-        game.rndCoordinates(shipsQuantity);
+        shipCoordinates = game.rndCoordinates(shipsQuantity);
 
 
         System.out.println(Arrays.deepToString(shipCoordinates));
