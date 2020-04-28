@@ -15,7 +15,7 @@ public class Game extends AbstractBattleship {
 
     public int [] [] botField() {
         int[][] field = new int[fieldHeight][fieldHeight];
-        updField(field);
+        updField();
         printField();
         return field;
     }
@@ -28,9 +28,9 @@ public class Game extends AbstractBattleship {
 
 
 
-    public int rndGenerator(int limit) {
+    public int rndGenerator(int i) {
         Random rand = new Random();
-        int n = rand.nextInt(limit);
+        int n = rand.nextInt(i);
         //System.out.println(n);
         return n;
     }
@@ -47,9 +47,9 @@ public class Game extends AbstractBattleship {
 
     }
 
-    public int [] [] updField(int [] [] field) {
+    public int [] [] updField() {
         rndCoordinates();
-        //int[][] field = new int[fieldHeight][fieldHeight];
+        int[][] field = new int[fieldHeight][fieldHeight];
         boolean zero = false;
         for (int i = 0; i < fieldHeight; i++) {
             for (int j = 0; j < fieldHeight; j++) {
