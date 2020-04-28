@@ -1,6 +1,10 @@
 import java.util.Random;
 
 public class Game extends AbstractBattleship {
+    int fieldHeight = 3;
+    int shipsQuantity = 3;
+    int [] [] shipCoordinates = new int[shipsQuantity][2];
+
 
 
     public Game(int fieldHeight, int shipsQuantity, int[][] shipCoordinates) {
@@ -12,18 +16,10 @@ public class Game extends AbstractBattleship {
         super();
         rndGenerator();
     }
+    public int [] [] playerShipCoord() {
+        int[] [] coord =rndCoordinates();
 
-    public int [] [] botField() {
-        int[][] field = new int[fieldHeight][fieldHeight];
-        updField();
-        printField();
-        return field;
-    }
-    public int [] [] playerField() {
-        int[][] field = new int[fieldHeight][fieldHeight];
-        updField();
-        printField();
-        return field;
+        return coord;
     }
 
 
@@ -47,9 +43,14 @@ public class Game extends AbstractBattleship {
 
     }
 
-    public int [] [] updField() {
-        rndCoordinates();
-        int[][] field = new int[fieldHeight][fieldHeight];
+//    public int [] [] startField() {
+//        int[][] field = new int[fieldHeight][fieldHeight];
+//        rndCoordinates();
+//        updField(field);
+//        return field;
+//    }
+
+    public int [] [] updField(int[][] field, int[][] shipCoordinates) {
         boolean zero = false;
         for (int i = 0; i < fieldHeight; i++) {
             for (int j = 0; j < fieldHeight; j++) {
@@ -73,19 +74,15 @@ public class Game extends AbstractBattleship {
     }
 
 
-    public void printField() {
-       int[] [] field = updField();
+
+
+    public void printField(int[][] field) {
         for (int i = 0; i < fieldHeight; i++) {
             for (int j = 0; j < fieldHeight; j++) {
                 System.out.print(field[i][j]);
             }
             System.out.println("");
         }
-
-    }
-
-    @Override
-    public void turn() {
 
     }
 }

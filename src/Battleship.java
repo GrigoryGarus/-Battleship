@@ -1,7 +1,7 @@
 public interface Battleship {
 
 
-    int rndGenerator();
+    //int rndGenerator();
     void printField();
     void turn();
 }

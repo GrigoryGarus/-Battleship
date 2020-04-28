@@ -2,19 +2,24 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        int shipsQuantity = 3;
-        int fieldHeight =4;
-        int [] [] shipCoordinates = new int[shipsQuantity][2];
 
 
-        Game game = new Game(fieldHeight,shipsQuantity, shipCoordinates);
-        //game.rndCoordinates();
-        //game.printField();
-        System.out.println(Arrays.deepToString(shipCoordinates));
-        game.botField();
-        //int [] [] f = game.updField();
-        //System.out.println(Arrays.deepToString(f));
-        System.out.println(Arrays.deepToString(shipCoordinates));
+        Game game = new Game();
+        CreatePlayerField playerField = new CreatePlayerField();
+        CreateBotField botField = new CreateBotField();
+
+
+        //System.out.println(Arrays.deepToString(game.startField()));
+        game.printField(playerField.playerField());
+        //System.out.println(Arrays.deepToString(playerField.playerShipCoord));
+        //game.printField(game.startField());
+        //playerField.playerField();
+       //botField.turn();
+       playerField.botTurn();
+
+      // playerField.playerField();
+
+        //System.out.println(Arrays.deepToString(game.shipCoordinates));
 
     }
 

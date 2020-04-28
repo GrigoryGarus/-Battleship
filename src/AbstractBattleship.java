@@ -29,7 +29,8 @@ public abstract class  AbstractBattleship implements Battleship {
 
     }
 
-    @Override
+
+
     public int rndGenerator() {
         return 0;
     }
