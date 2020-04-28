@@ -8,11 +8,13 @@ public class Main {
 
 
         Game game = new Game(fieldHeight,shipsQuantity, shipCoordinates);
-        shipCoordinates = game.rndCoordinates(shipsQuantity);
-
-
+        //game.rndCoordinates();
+        //game.printField();
         System.out.println(Arrays.deepToString(shipCoordinates));
-        System.out.println(shipCoordinates[1][1]);
+        game.botField();
+        //int [] [] f = game.updField();
+        //System.out.println(Arrays.deepToString(f));
+        System.out.println(Arrays.deepToString(shipCoordinates));
 
     }
 
