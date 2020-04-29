@@ -1,10 +1,9 @@
-import java.util.Random;
+import java.util.*;
 
 public class Game extends AbstractBattleship {
-    int fieldHeight = 3;
-    int shipsQuantity = 3;
-    int [] [] shipCoordinates = new int[shipsQuantity][2];
-
+    int fieldHeight = 2;
+    int shipsQuantity = 2;
+    int[][] shipCoordinates = new int[shipsQuantity][2];
 
 
     public Game(int fieldHeight, int shipsQuantity, int[][] shipCoordinates) {
@@ -16,12 +15,6 @@ public class Game extends AbstractBattleship {
         super();
         rndGenerator();
     }
-    public int [] [] playerShipCoord() {
-        int[] [] coord =rndCoordinates();
-
-        return coord;
-    }
-
 
 
     public int rndGenerator(int i) {
@@ -50,10 +43,14 @@ public class Game extends AbstractBattleship {
 //        return field;
 //    }
 
-    public int [] [] updField(int[][] field, int[][] shipCoordinates) {
+    public int[][] updField(int[][] field, int[][] shipCoordinates, int[] botHit) {
         boolean zero = false;
+        //int[][] sixCoordinates = new int[shipsQuantity][2];
+
+
         for (int i = 0; i < fieldHeight; i++) {
             for (int j = 0; j < fieldHeight; j++) {
+
 
                 for (int k = 0; k < shipCoordinates.length; k++) {
                     if (i == shipCoordinates[k][0] && j == shipCoordinates[k][1]) {
@@ -67,13 +64,22 @@ public class Game extends AbstractBattleship {
 
                 }
                 zero = false;
-            }
 
+
+
+            }
+        }
+        for (int[] coord : shipCoordinates) {
+            if (Arrays.equals(coord, botHit)) {
+                HitCoordinatesStorage.INSTANCE.getSixCoord().add(coord);
+                break;
+            }
+        }
+        for (int[] coord : HitCoordinatesStorage.INSTANCE.getSixCoord()) {
+            field[coord[0]][coord[1]] = 8;
         }
         return field;
     }
-
-
 
 
     public void printField(int[][] field) {
@@ -84,5 +90,17 @@ public class Game extends AbstractBattleship {
             System.out.println("");
         }
 
+    }
+    public boolean gameOver (int[] [] field){
+        boolean gameOver = true;
+        for (int i = 0; i < fieldHeight; i++) {
+            for (int j = 0; j < fieldHeight; j++) {
+                if(field[i][j]==1){
+                    gameOver=false;
+                }
+            }
+        }
+
+return  gameOver;
     }
 }
