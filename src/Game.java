@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Game extends AbstractBattleship {
-    int fieldHeight = 2;
+    int fieldHeight = 3;
     int shipsQuantity = 2;
     int[][] shipCoordinates = new int[shipsQuantity][2];
 
@@ -45,38 +45,40 @@ public class Game extends AbstractBattleship {
 
     public int[][] updField(int[][] field, int[][] shipCoordinates, int[] botHit) {
         boolean zero = false;
-        //int[][] sixCoordinates = new int[shipsQuantity][2];
 
 
         for (int i = 0; i < fieldHeight; i++) {
             for (int j = 0; j < fieldHeight; j++) {
 
+                 if (field[i][j] != 6) {
+                     for (int k = 0; k < shipCoordinates.length; k++) {
+                         if (i == shipCoordinates[k][0] && j == shipCoordinates[k][1]) {
+                             field[i][j] = 1;
+                             zero = true;
+                         }
 
-                for (int k = 0; k < shipCoordinates.length; k++) {
-                    if (i == shipCoordinates[k][0] && j == shipCoordinates[k][1]) {
-                        field[i][j] = 1;
-                        zero = true;
-                    }
+                     }
+                     if (!zero) {
+                         field[i][j] = 0;
 
-                }
-                if (!zero) {
-                    field[i][j] = 0;
-
-                }
-                zero = false;
+                     }
+                     zero = false;
+                 }
 
 
 
             }
         }
+
         for (int[] coord : shipCoordinates) {
             if (Arrays.equals(coord, botHit)) {
-                HitCoordinatesStorage.INSTANCE.getSixCoord().add(coord);
+                HitCoordinatesStorage.INSTANCE.getSixCoord().add(botHit);
                 break;
             }
         }
+
         for (int[] coord : HitCoordinatesStorage.INSTANCE.getSixCoord()) {
-            field[coord[0]][coord[1]] = 8;
+            field[coord[0]][coord[1]] = 6;
         }
         return field;
     }

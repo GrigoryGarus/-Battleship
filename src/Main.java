@@ -10,11 +10,10 @@ public class Main {
 
 
         //System.out.println(Arrays.deepToString(game.startField()));
-        game.printField(playerField.playerField());
-        //System.out.println(Arrays.deepToString(playerField.playerShipCoord));
-        //game.printField(game.startField());
-        //playerField.playerField();
-       //botField.turn();
+
+//        playerField.playerField();
+//        playerField.botField();
+        game.printField(playerField.playerField);
        playerField.botTurn();
 
       // playerField.playerField();

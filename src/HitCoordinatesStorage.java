@@ -5,6 +5,11 @@ public enum HitCoordinatesStorage {
     INSTANCE;
 
     private List<int[]> sixCoord = new ArrayList<int[]>();
+    private List<int[]> hitCoord = new ArrayList<int[]>();
+
+    public List<int[]> getHitCoord() {
+        return hitCoord;
+    }
 
     public List<int[]> getSixCoord() {
         return sixCoord;

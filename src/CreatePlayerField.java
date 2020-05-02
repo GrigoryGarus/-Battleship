@@ -5,13 +5,13 @@ public class CreatePlayerField extends Game {
 
     Game game = new Game();
     public final int[][] playerShipCoord = game.rndCoordinates();
-    int[][] field = new int[game.fieldHeight][game.fieldHeight];
+    int[][] playerField = new int[game.fieldHeight][game.fieldHeight];
     int[] playerHit = new int[2];
 
 
     public int[][] playerField() {
-        updField(field, playerShipCoord, botHit);
-        return field;
+        updField(playerField, playerShipCoord, botHit);
+        return playerField;
     }
 
 
@@ -19,37 +19,46 @@ public class CreatePlayerField extends Game {
     int[][] botField = new int[game.fieldHeight][game.fieldHeight];
     int[] botHit = new int[2];
 
+
     public int[][] botField() {
-        updField(botField, botCoordinates, botHit);
+        updField(botField, botCoordinates, playerHit);
         return botField;
     }
 
 
     public void botTurn() {
-        if (game.gameOver(playerField())) {
-            System.out.println("Победил бот");
-        } else {
+
             botHit[0] = game.rndGenerator(fieldHeight);
             botHit[1] = game.rndGenerator(fieldHeight);
+
+
+            playerField=playerField();
             System.out.println(Arrays.toString(botHit));
-            System.out.println("Игрок " + Arrays.deepToString(playerShipCoord));
+            System.out.println("Координаты игрока " + Arrays.deepToString(playerShipCoord));
+
             for (int[] coord : playerShipCoord) {
                 if (Arrays.equals(coord, botHit)) {
                     System.out.println("Бот попал" + Arrays.toString(coord));
                     game.printField(playerField());
-                    botTurn();
+
+                    if (game.gameOver(playerField)) {
+                        System.out.println("Победил бот");
+                        break;
+                    } else botTurn();
                 }
             }
-            System.out.println("Бот мимо");
-            game.printField(playerField());
+        if (game.gameOver(playerField)) {
+            System.out.println("Победил бот");
+        } else {System.out.println("Бот мимо");
+
+        game.printField(playerField());
             playerTurn();
         }
+
     }
 
     public void playerTurn() {
-        if (game.gameOver(botField())) {
-            System.out.println("Победил игрок");
-        } else {
+            botField=botField();
             Scanner scanner = new Scanner(System.in);
         System.out.println("Введите координаты");
         playerHit[0] = scanner.nextInt();
@@ -59,14 +68,21 @@ public class CreatePlayerField extends Game {
         for (int[] coord : botCoordinates) {
             if (Arrays.equals(coord, playerHit)) {
                 System.out.println("Игрок попал");
-                playerTurn();
+
+                if (game.gameOver(botField())) {
+                    System.out.println("Победил игрок");
+                } else playerTurn();
 
 
             }
 
         }
-        System.out.println("Игрок мимо");
+        if (game.gameOver(botField())) {
+            System.out.println("Победил игрок");
+        } else {
+            System.out.println("Игрок мимо");
         botTurn();
-    }
+        }
+
 }
 }
